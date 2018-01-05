@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 服务信息 -->
+    <dubbo:application name="demo-consumer" owner="programmer" organization="dubbox"/>
+
+    <!-- 注册中心 -->
+    <dubbo:registry address="zookeeper://192.168.48.129:2181?backup=192.168.48.131:2181,192.168.48.132:2181"/>
+    <!-- 注册中心 -->
+
+    <dubbo:reference id="testSPI" interface="spi.TestSPI" timeout="60000" retries="0"/>
+    <dubbo:reference id="memberSPIService" interface="spi.system.MemberSPI" timeout="60000" retries="0"/>
+    <dubbo:reference id="permissionSPIService" interface="spi.system.PermissionSPI" timeout="60000" retries="0"/>
+    <dubbo:reference id="roleSPIService" interface="spi.system.RoleSPI" timeout="60000" retries="0"/>
+
+</beans>

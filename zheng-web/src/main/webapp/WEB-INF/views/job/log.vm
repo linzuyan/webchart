@@ -1,0 +1,154 @@
+#set($layout =  "share/hi-layout.vm" )
+<script src="$!{request.getContextPath()}/resource/js/jquery-1.8.0.min.js"></script>
+#*<form id="form1" action="$!{request.getContextPath()}/Member/addoredit" method="post">
+    <fieldset>
+        <label>头像</label>
+        <img id="tx" src="/pic/tx.png" class="img-rounded">
+        <input type="hidden" id="imgurl" name="imgurl" value="">
+        <span class="help-block"></span>
+        <label>用户手机</label>
+        <input type="hidden" name="id" value="0">
+        <input type="text" name="phone" id="phone" value="" placeholder="" onblur="canadd(this);">
+        <span class="help-block"></span>
+        <label>用户姓名</label>
+        <input type="text" name="userName" id="userName" value="" placeholder="">
+        <span class="help-block"></span>
+        <label>用户地址</label>
+        <input type="text" name="address" id="address" value="" placeholder="">
+        <span class="help-block"></span>
+        <label>用户密码</label>
+        <input type="password" name="password" id="password" value="" placeholder="">
+        <span class="help-block"></span>
+        <label>用户权限</label>
+        <select name="role">
+            #foreach($roleitem in $role)
+                <option value="$roleitem.id">$roleitem.roleName</option>
+            #end
+        </select>
+        <span class="help-block"></span>
+        <button type="button" onclick="resub();" class="btn">取消</button>
+        <button type="button" onclick="sub();" class="btn">提交</button>
+    </fieldset>
+</form>*#
+<form id="form1"  method="post">
+    <fieldset>
+        <table>
+            #*<tr>
+                <td>
+                    partid
+                </td>
+                <td class="">
+                    <textarea style="text-indent:0" type="text" name="partId"></textarea>
+                </td>
+            </tr>*#
+        <tr>
+            <td>
+                星期一
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week1"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                星期二
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week2"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                星期三
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week3"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                星期四
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week4"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                星期五
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week5"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                星期六
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week6"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                星期日
+            </td>
+            <td class="">
+                <textarea style="text-indent:0" type="text" name="week7"></textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                本周总结
+            </td>
+
+            <td >
+                <textarea style="text-indent:0" type="text" name="weekAll"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                下周计划
+            </td>
+
+            <td >
+                <textarea style="text-indent:0" type="text" name="nextPlan"></textarea>
+            </td>
+        </tr>
+        <span class="help-block"></span>
+        <button  type="reset" class="btn">重置</button>
+        <button type="button" class="btn" onclick="sub()">提交</button>
+        </table>
+    </fieldset>
+</form>
+
+
+<script type="text/javascript">
+    function sub(){
+        alert( jQuery('#form1').serialize());
+
+        jQuery.ajax({
+            /*通过控制器 修改数据*/
+            url: '$!{request.getContextPath()}/job/logcommit',
+            /*序列化 传入member.url=1&b=2&c=3&d=4&e=5  后台request接收*/
+            data: jQuery('#form1').serialize(),
+            type: "post",
+            success: function (data) {
+                if (data.code > 0) {
+                    alert("成功！");
+                    /*前端实现路由转到*/
+                    location.href="/job/joblist";
+                }
+                else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+</script>

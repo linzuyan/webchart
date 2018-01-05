@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="domain.mapper.JobWeekMapper">
+
+    <resultMap id="result1" type="jobWeek">
+        <id column="id" property="id" jdbcType="BIGINT" ></id>
+
+        <result column="partid" property="PartId" jdbcType="BIGINT"></result>
+
+        <result column="week1" property="Week1" jdbcType="VARCHAR"></result>
+        <result column="week2" property="Week2" jdbcType="VARCHAR"></result>
+        <result column="week3" property="Week3" jdbcType="VARCHAR"></result>
+        <result column="week4" property="Week4" jdbcType="VARCHAR"></result>
+        <result column="week5" property="Week5" jdbcType="VARCHAR"></result>
+        <result column="week6" property="Week6" jdbcType="VARCHAR"></result>
+        <result column="week7" property="Week7" jdbcType="VARCHAR"></result>
+        <result column="weekall" property="WeekAll" jdbcType="VARCHAR"></result>
+        <result column="nextplan" property="NextPlan" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <!--<sql id="select_sql">
+        SELECT id,phone,username,displayname,sex,img_url,password,address,create_time,update_time,status
+    </sql>-->
+    <!---->
+   <!-- <select id="queryPageList" resultMap="result">
+        <include refid="select_sql" />
+        FROM tb_member
+        limit #{query.startRow},#{query.pageSize}
+    </select>-->
+
+    <!--<select id="queryCountPage" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM tb_member
+    </select>-->
+
+<!--    <select id="queryById" parameterType="long" resultMap="result">
+        <include refid="select_sql"/>
+        FROM tb_member WHERE id=#{id}
+    </select>-->
+
+<!--    <select id="queryByUsername" parameterType="string" resultMap="result">
+        <include refid="select_sql" />
+        FROM tb_member WHERE username=#{username}
+    </select>-->
+
+    <!--<select id="querylist" resultMap="result">
+        <include refid="select_sql"/>
+        FROM tb_member
+    </select>-->
+    <sql id="select_sql1">
+        SELECT id,partid,week1,week2,week3,week4,week5,week6,week7,weekall,nextplan
+    </sql>
+
+    <insert id="addJobWeek" parameterType="jobWeek" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO job_week(id,partid,week1,week2,week3,week4,week5,week6,week7,weekall,nextplan)
+        VALUES (#{id},#{PartId},#{Week1},#{Week2},#{Week3},#{Week4},#{Week5},#{Week6},#{Week7},#{WeekAll},#{NextPlan})
+    </insert>
+
+    <select id="queryCountPagejob" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM job_week
+    </select>
+
+    <select id="queryPageListjob" resultMap="result1">
+        <include refid="select_sql1" />
+        FROM job_week
+        limit #{query.startRow},#{query.pageSize}
+    </select>
+  <!--  <delete id="deleteMember" parameterType="long">
+        DELETE FROM tb_member WHERE id=#{id}
+    </delete>-->
+
+   <!-- <update id="updateStatus">
+        UPDATE tb_member SET status=#{status} WHERE id=#{memberid}
+    </update>-->
+</mapper>
