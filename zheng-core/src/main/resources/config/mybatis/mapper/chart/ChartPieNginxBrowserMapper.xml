@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="domain.mapper.ChartPieNginxBrowserMapper">
+
+    <resultMap id="result" type="ChartPieModel">
+        <id column="id" property="id" jdbcType="BIGINT" ></id>
+        <result column="piekey" property="PieKey" jdbcType="VARCHAR"></result>
+        <result column="pievalue" property="PieValue" jdbcType="BIGINT"></result>
+    </resultMap>
+
+    <sql id="select_sql2">
+        SELECT id,piekey,pievalue
+    </sql>
+
+    <!--    <select id="queryById" parameterType="java.lang.Long" resultMap="result">
+            <include refid="select_sql"/>
+            FROM tb_job WHERE id=#{jobId}
+        </select>-->
+
+    <select id="queryList" resultMap="result">
+        <include refid="select_sql2"/>
+        FROM tb_chart_pie_brown
+        limit #{query.startRow},#{query.pageSize}
+    </select>
+
+    <!--  <select id="queryPageList" resultMap="result">
+          <include refid="select_sql"/>
+          FROM tb_job
+          limit #{query.startRow},#{query.pageSize}
+      </select>
+
+      <select id="queryCountPage" resultType="java.lang.Integer">
+          SELECT COUNT(1) FROM tb_job
+      </select>
+
+      <insert id="insertJob">
+          INSERT INTO tb_job(`jobName`,`createTime`,`remark`) VALUES (#{job.jobName},#{job.createTime},#{job.remark})
+      </insert>
+
+      <delete id="deleteJob" parameterType="java.lang.Long">
+          DELETE FROM tb_job WHERE id=#{jobId}
+      </delete>-->
+</mapper>

@@ -1,15 +1,46 @@
 package controller;
 
 
+import domain.model.ChartPieModel;
+import domain.model.system.query.ChartPieQuery;
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import spi.system.ChartPieSPI;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 public class ChartsController extends BaseController {
+    @Resource
+    private ChartPieSPI chartPieSPIService;
     @RequestMapping(value = "/Charts/charts-1")
-    public String chart1(){
+    public String chart1(Model model){
+        ChartPieQuery query = new ChartPieQuery();
+        List<ChartPieModel> chartList =chartPieSPIService.queryPieChart(query);
+        model.addAttribute("ChartList",chartList);
         return "/Charts/charts-1";
     }
+    @ResponseBody
+    @RequestMapping(value = "/Charts/AjaxCharts1",method = {RequestMethod.POST})
+    public List<ChartPieModel> AjaxChart1(){
+        ChartPieQuery query = new ChartPieQuery();
+        List<ChartPieModel> chartList =chartPieSPIService.queryPieChart(query);
+        /*计算百分比*/
+        /*long sizezong = 0;
+        for (int i = 0;i<chartList.size();i++){
+           sizezong =  sizezong + chartList.get(i).getPieValue();
+        }
+        for (int i = 0;i<chartList.size();i++){
+
+        }*/
+
+        return chartList;
+    }
+
 
 
     @RequestMapping(value = "/Charts/charts-2")

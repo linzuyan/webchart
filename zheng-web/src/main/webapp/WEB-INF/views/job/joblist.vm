@@ -3,6 +3,7 @@
 <div class="mt-20">
     <div class="dataTables_wrapper no-footer">
         <table class="table table-border table-bordered table-bg">
+
             <thead>
             <tr>
                 <th scope="col" colspan="9">周报列表</th>
