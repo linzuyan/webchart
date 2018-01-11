@@ -1,0 +1,110 @@
+#set($layout =  "share/hi-layout.vm" )
+<script type="text/javascript" src="$!{request.getContextPath()}/resource/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="$!{request.getContextPath()}/resource/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="$!{request.getContextPath()}/resource/lib/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="$!{request.getContextPath()}/resource/js/h-ui/H-ui.js"></script>
+<script type="text/javascript" src="$!{request.getContextPath()}/resource/js/h-ui/H-ui.admin.js"></script>
+<script type="text/javascript" src="$!{request.getContextPath()}/resource/lib1/bootstrap-modal.js"></script>
+<script type="text/javascript">
+    function sub() {
+        alert( $('#form1').serialize());
+        jQuery.ajax({
+            url: '$!{request.getContextPath()}/mapreduce/Maphandle',
+            data: jQuery('#form1').serialize(),
+            /*data:1,*/
+            type: "post",
+            success: function (data) {
+                if (data.code > 0) {
+                    alert("成功！");
+                    document.getElementById("scriptLog").innerHTML = data.msg;
+                }
+                else {
+                    alert(data.msg);
+                }
+            }
+
+        })
+    }
+    function subgyl() {
+        jQuery.ajax({
+            url: '$!{request.getContextPath()}/project/gylOnline',
+            data: jQuery('#form1').serialize(),
+            /*data:1,*/
+            type: "post",
+            success: function (data) {
+                if (data.code > 0) {
+                    alert("成功！");
+                    /*location.href = "/Member/index";*/
+                    alert(data.msg);
+                    document.getElementById("scriptLog").innerHTML = data.msg;
+
+                }
+                else {
+                    alert(data.msg);
+                }
+            }
+
+        })
+
+    }
+    function resetgyl() {
+        document.getElementById("scriptLog").innerHTML = null;
+    }
+</script>
+<form id="form1">
+    <fieldset style="padding-left: 30px">
+    #*<label>头像</label>
+    <img id="tx" src="/pic/tx.png" class="img-rounded">
+    <input type="hidden" id="imgurl" name="imgurl" value="">*#
+        <span class="help-block"></span>
+        <label>服务器ip地址</label>
+        <input type="text" name="Ip" id="Ip" value="" placeholder="">
+        <label>服务器执行用户</label>
+        <input type="text" name="UserName" id="UserName" value="" placeholder="">
+
+        <label>服务器密码</label>
+        <input type="text" name="PassWd" id="PsaaWd" value="" placeholder="">
+
+        <label>脚本路径</label>
+        <input type="text" name="ScriptPath" id="ScriptPath" value="" placeholder="">
+
+        <label>脚本参数one</label>
+        <input type="text" name="ParameterOne" id="ParameterOne" value="" placeholder="">
+        <label>脚本参数two</label>
+        <input type="text" name="ParameterTwo" id="ParameterTwo" value="" placeholder="">
+
+        <button type="button" onclick="resub();" class="btn">取消</button>
+        <button type="button" onclick="sub();" class="btn">执行脚本</button>
+    </fieldset>
+</form>
+<form id="form2" style="margin-top: 20px;margin-left: 30px">
+    #*<label>头像</label>
+    <img id="tx" src="/pic/tx.png" class="img-rounded">
+    <input type="hidden" id="imgurl" name="imgurl" value="">*#
+        <span class="help-block"></span>
+        <label>服务器ip地址</label>
+        <input type="text" name="Ip" id="Ip" value="" placeholder="">
+        <button type="button" onclick="subgyl();" class="btn">mapreduce之Nginx日志分析</button>
+
+</form>
+<form id="form3" style="margin-top: 20px;margin-left: 30px">
+
+    #*<label>头像</label>
+    <img id="tx" src="/pic/tx.png" class="img-rounded">
+    <input type="hidden" id="imgurl" name="imgurl" value="">*#
+        <span class="help-block"></span>
+        <label>服务器ip地址</label>
+        <input type="text" name="Ip" id="Ip" value="" placeholder="">
+        <button type="button" onclick="resub();" class="btn">wordcount统计</button>
+
+</form>
+
+<h1 style="text-align: center">mapreduce处理日志</h1>
+<button onclick="resetgyl();" class="btn" style="float: right;margin-right: 15px">清除日志</button>
+<div style="margin: 25px 0px 0px 310px">
+    <textarea rows="90" cols="200" id="scriptLog" readonly="false" style="border: hidden">
+    </textarea>
+</div>
+
+
+

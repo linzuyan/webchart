@@ -24,6 +24,7 @@ public class ChartsController extends BaseController {
         model.addAttribute("ChartList",chartList);
         return "/Charts/charts-1";
     }
+
     @ResponseBody
     @RequestMapping(value = "/Charts/AjaxCharts1",method = {RequestMethod.POST})
     public List<ChartPieModel> AjaxChart1(){

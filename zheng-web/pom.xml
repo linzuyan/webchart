@@ -160,6 +160,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <!--远程执行linux命令-->
+        <dependency>
+            <groupId>org.jvnet.hudson</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+            <version>build210-hudson-1</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>zheng-web</finalName>

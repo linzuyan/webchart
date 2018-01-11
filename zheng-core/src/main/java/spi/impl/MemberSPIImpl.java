@@ -160,7 +160,7 @@ public class MemberSPIImpl implements MemberSPI {
             AuthPerm authperm=new AuthPerm();
             authperm.setName(perm.getDisplayName());
             authperm.setUrl(perm.getUrl());
-           /*perms2中两者条件都必须成立 perms2第二层列表*/
+           /*perms2中两者条件都必须成立 perms2第二层列表 */
             List<Perm> perms2= permManager.queryByMemberIdAndParentId(memberid,perm.getId());
             /**/
             List<AuthPerm> authpermlist2=new ArrayList<AuthPerm>();
