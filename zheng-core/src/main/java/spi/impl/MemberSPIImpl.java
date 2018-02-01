@@ -47,6 +47,7 @@ public class MemberSPIImpl implements MemberSPI {
         /*定义*/
         List<MemberDto> listDto=new ArrayList<MemberDto>();
         /*查询 查询的时候可以定义几条第几条 在query中即可 */
+
         List<Member> list= memberManager.queryPagelist(query);
         /*查询该表多少数据*/
         int count=memberManager.queryCountPage(query);
@@ -91,6 +92,12 @@ public class MemberSPIImpl implements MemberSPI {
         PageModel<MemberDto> pageModel=new PageModel<MemberDto>(listDto,query.getCurrPage(),count,query.getPageSize());
         return pageModel;
     }
+
+
+    /*未写完*/
+
+
+
 
     public MemberDto queryById(Long id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         MemberDto memberDto=new MemberDto();

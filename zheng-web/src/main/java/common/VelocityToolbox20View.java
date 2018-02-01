@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * Created by XR on 2016/8/26.
+ * .
  */
 public class VelocityToolbox20View extends VelocityLayoutView {
     @Override

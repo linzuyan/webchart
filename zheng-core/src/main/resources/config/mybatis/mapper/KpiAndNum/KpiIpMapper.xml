@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="domain.mapper.KpiIpAndNumMapper">
+
+    <resultMap id="result2" type="KpiIpAndNumDto">
+        <result column="kpiip" property="kpiip" jdbcType="VARCHAR"></result>
+        <result column="num" property="num" jdbcType="BIGINT"></result>
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT kpiip,num
+    </sql>
+
+    <!--<select id="queryPageList" resultMap="result">
+        <include refid="select_sql" />
+        FROM tb_member
+        limit #{query.startRow},#{query.pageSize}
+    </select>-->
+
+    <select id="queryPageList" resultMap="result2">
+        <include refid="select_sql" />
+        FROM mp_kpiip
+        WHERE  num>=#{query.nummin} AND  #{query.nummax}>num
+        limit #{query.startRow},#{query.pageSize}
+    </select>
+
+
+
+    <select id="queryCountPage" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM mp_kpiip
+    </select>
+
+    <!-- <select id="queryById" parameterType="long" resultMap="result">
+         <include refid="select_sql"/>
+         FROM tb_member WHERE id=#{id}
+     </select>-->
+
+    <!--<select id="queryByUsername" parameterType="string" resultMap="result">
+        <include refid="select_sql" />
+        FROM tb_member WHERE username=#{username}
+    </select>-->
+
+    <!--<select id="querylist" resultMap="result">
+        <include refid="select_sql"/>
+        FROM tb_member
+    </select>-->
+
+    <!--  <insert id="insertmember" parameterType="member" useGeneratedKeys="true" keyProperty="id">
+          INSERT INTO tb_member(phone,username,displayname,img_url,password,address,sex,create_time,update_time,remark,status)
+          VALUES (#{phone},#{userName},#{displayName},#{imgUrl},#{password},#{address},#{sex},#{createTime},#{updateTime},#{remark},#{status})
+      </insert>-->
+
+    <!-- <delete id="deleteMember" parameterType="long">
+         DELETE FROM tb_member WHERE id=#{id}
+     </delete>-->
+
+    <!--<update id="updateStatus">
+        UPDATE tb_member SET status=#{status} WHERE id=#{memberid}
+    </update>-->
+</mapper>

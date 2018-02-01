@@ -28,8 +28,13 @@ public class MemberManager {
     }
 
     public List<Member> queryPagelist(MemberQuery query){
-        return memberDao.queryPageList(query);
+        if (query.getDatemax()==null){return memberDao.queryPageList(query);}else{
+            return memberDao.queryPageListByDate(query);
+        }
+
     }
+
+
 
     public int queryCountPage(MemberQuery query){
         return memberDao.queryCountPage(query);

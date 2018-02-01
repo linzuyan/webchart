@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/21.
+ * Created by Administrator on 2018/8/21.
  */
 @Controller
 @Api(value = "AdminController")
@@ -37,9 +37,10 @@ public class AdminController extends BaseController {
 
     @Auth(rule = "/admin/index")
     @RequestMapping(value = "/admin/index")
-    public String index(Model model, HttpSession httpSession) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public String index(Model model, HttpSession httpSession,@RequestParam(defaultValue = "1") int currPage) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         MemberQuery query=new MemberQuery();
         /* 查询这个中所有数据 并且以pagemodel所有数据展示（MemberDto）*/
+        query.setCurrPage(currPage);
         PageModel<MemberDto> list= memberSPIService.queryPageList(query);
         model.addAttribute("memberlist",list);
         model.addAttribute("user",getAuthUser(httpSession));
@@ -120,4 +121,17 @@ public class AdminController extends BaseController {
         }
         return jsonResult(-1,"删除失败");
     }
+
+
+    @RequestMapping(value = "/admin/querydateList")
+    public String querydatelist(Model model,@RequestParam(defaultValue = "1") int currPage,@RequestParam(value = "datemin") String datemin,@RequestParam(value = "datemax") String datemax){
+        MemberQuery query=new MemberQuery();
+        query.setDatemin(datemin);
+        query.setDatemax(datemax);
+        query.setCurrPage(currPage);
+        PageModel<MemberDto> list= memberSPIService.queryPageList(query);
+        model.addAttribute("memberlist",list);
+        return "/admin/index";
+    }
+
 }

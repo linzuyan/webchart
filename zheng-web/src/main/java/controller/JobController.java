@@ -67,8 +67,9 @@ public class JobController extends BaseController {
 
     /*@Auth(rule = "/job/joblist")*/
     @RequestMapping(value = "/job/joblist")
-    public String index(Model model, HttpSession httpSession) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public String index(Model model, HttpSession httpSession,@RequestParam(defaultValue = "1") int currPage) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         MemberQuery query=new MemberQuery();
+        query.setCurrPage(currPage);
         /* 查询这个中所有数据 并且以pagemodel所有数据展示（MemberDto）*/
         PageModel<JobWeek> list= JobSPIService.queryPageList(query);
         model.addAttribute("memberlist",list);

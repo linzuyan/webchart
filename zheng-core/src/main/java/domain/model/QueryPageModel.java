@@ -19,7 +19,7 @@ public class QueryPageModel extends BaseModel {
     /**
      * 页大小
      */
-    private Integer pageSize=10;
+    private Integer pageSize=4;
 
     public Integer getStartRow() {
         return (currPage-1)*pageSize;

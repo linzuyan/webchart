@@ -28,8 +28,18 @@
     <select id="queryPageList" resultMap="result">
         <include refid="select_sql" />
         FROM tb_member
+
         limit #{query.startRow},#{query.pageSize}
     </select>
+
+    <select id="queryPageListByDate" resultMap="result">
+        <include refid="select_sql" />
+        FROM tb_member
+        WHERE  create_time>=#{query.datemin} AND  #{query.datemax}>create_time
+        limit #{query.startRow},#{query.pageSize}
+    </select>
+
+
 
     <select id="queryCountPage" resultType="java.lang.Integer">
         SELECT COUNT(1) FROM tb_member

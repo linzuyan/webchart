@@ -20,6 +20,8 @@ public interface MemberSPI {
 
     PageModel<MemberDto> queryPageList(MemberQuery query);
 
+
+
     MemberDto queryById(Long id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException;
 
     Member queryByUsername(String username);

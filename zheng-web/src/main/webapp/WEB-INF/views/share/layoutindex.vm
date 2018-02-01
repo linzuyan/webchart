@@ -17,6 +17,7 @@
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="$!{request.getContextPath()}/js/jquery.form.js"></script>
     <script src="$!{request.getContextPath()}/js/pagination.js"></script>
+    #*文档就绪钱执行*#
     <script type="text/javascript">
         jQuery(document).ready(function(){
             jQuery.Pagination('',0,'$!{request.getRequestURI()}','$list.currpage','$list.pagecount')

@@ -15,6 +15,11 @@ public interface MemberMapper {
     /**/
     List<Member> queryPageList(@Param("query") MemberQuery query);
 
+
+    /*未写完*/
+    List<Member> queryPageListByDate(@Param("query") MemberQuery query);
+
+
     int queryCountPage(@Param("query") MemberQuery query);
 
     Member queryByUsername(String username);

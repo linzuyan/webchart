@@ -48,7 +48,7 @@
                 #end
             </tbody>
         </table>
-        #pagination($memberlist,"/admin/index?1=1")
+        #pagination($memberlist,"/job/joblist?1=1")
     </div>
 </div>
 <script type="text/javascript" src="$!{request.getContextPath()}/resource/lib/jquery/1.9.1/jquery.min.js"></script>

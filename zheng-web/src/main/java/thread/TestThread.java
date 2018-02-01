@@ -1,7 +1,7 @@
 package thread;
 
 /**
- * Created by XR on 2016/8/30.
+ * .
  */
 public class TestThread implements Runnable {
     public void run() {

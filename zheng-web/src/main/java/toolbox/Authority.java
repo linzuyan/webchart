@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by XR on 2016/9/8.
+ *
  */
 public class Authority {
     public boolean isPermission(String perm){
